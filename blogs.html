@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Blogs • Amu4her</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body class="bg-white text-gray-800 font-sans">
+
+ <!-- Header -->
+    <header class="flex flex-col md:flex-row justify-between items-center p-6 bg-pink-100 shadow-sm">
+      <div class="flex items-center space-x-4">
+        <img src="./images/logo.png" alt="Amu4her Logo" class="h-16 w-16 rounded-full border-2 border-pink-300 shadow-md">
+        <div>
+  <h1 class="text-3xl font-bold text-pink-600 hover:text-pink-800 transition-colors duration-200">
+    <a href="/" class="hover:underline">Amu4her</a>
+  </h1>
+  <p class="text-sm text-pink-500 italic">
+    Create ~ Empower ~ Normalize
+  </p>
+</div>
+      </div>
+      <!-- Navigation -->
+      <nav class="mt-4 md:mt-0 flex items-center space-x-6 text-lg text-pink-700 font-medium relative">
+        <a href="/#hero" class="hover:underline">
+          Who Are We
+        </a>
+        <!-- ABOUT Dropdown -->
+        <div class="relative group">
+          <a href="/about" class="hover:underline flex items-center gap-1">
+            About
+            <svg class="w-4 h-4 transform transition-transform group-hover:rotate-180"
+            fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </a>
+          <div class="absolute left-0 mt-2 w-44 bg-white border border-pink-300 rounded-md shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform -translate-y-2 transition z-10">
+            <a href="/team-application" class="block px-4 py-2 hover:bg-pink-50">
+              Team Application
+            </a>
+            <a href="/member-signup" class="block px-4 py-2 hover:bg-pink-50">
+              Member Signup
+            </a>
+          </div>
+        </div>
+        <!-- VOLUNTEER Dropdown -->
+        <div class="relative group">
+          <a href="/volunteer" class="hover:underline flex items-center gap-1">
+            Volunteer
+            <svg class="w-4 h-4 transform transition-transform group-hover:rotate-180"
+            fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </a>
+          <div class="absolute left-0 mt-2 w-48 bg-white border border-pink-300 rounded-md shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform -translate-y-2 transition z-10">
+            <a href="/create-letters" class="block px-4 py-2 hover:bg-pink-50">
+              Make Letters
+            </a>
+            <a href="/chapter" class="block px-4 py-2 hover:bg-pink-50">
+              Start a Chapter
+            </a>
+    
+          </div>
+        </div>
+        <a href="/blogs" class="hover:underline">
+          Blog
+        </a>
+        <a href="/jewelry" class="hover:underline">
+          Jewelry
+        </a>
+      </nav>
+    </header>
+
+
+<!-- Hero -->
+<section class="px-6 py-16 bg-pink-50 text-center">
+  <h1 class="text-5xl font-bold text-pink-700">Our Blog</h1>
+  <p class="mt-4 text-lg text-gray-700">Explore stories, insights, and voices from our community</p>
+
+  <!-- Search -->
+  <div class="mt-6 max-w-xl mx-auto">
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="Search blogs..."
+      class="w-full px-5 py-3 border border-pink-300 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-400"
+    />
+  </div>
+</section>
+
+<!-- Blog Grid -->
+<section class="px-6 py-14">
+  <div id="blog-grid" class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <p class="text-gray-500 italic">Loading blogs...</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-blue-100 text-center text-sm text-gray-600 p-4 mt-10 flex justify-center items-center gap-2">
+  <p>&copy; 2025 Amu4her. Built with</p>
+  <i class="fas fa-heart text-pink-600 text-sm"></i>
+</footer>
+
+<script>
+const PROJECT_ID = "s5tm8bhe";
+const DATASET = "production";
+
+// build image url
+function urlFor(source) {
+  if (!source?._ref) return "";
+  const [id, dims, format] = source._ref.split('-').slice(1);
+  return `https://cdn.sanity.io/images/${PROJECT_ID}/${DATASET}/${id}-${dims}.${format}`;
+}
+
+let ALL_POSTS = [];
+
+async function loadBlogs() {
+  const container = document.getElementById("blog-grid");
+
+  try {
+    const query = encodeURIComponent(`*[_type=="post"] | order(publishedAt desc){
+      title,
+      slug,
+      publishedAt,
+      description,
+      image,
+      author->{name}
+    }`);
+
+    const url = `https://${PROJECT_ID}.api.sanity.io/v1/data/query/${DATASET}?query=${query}`;
+    const res = await fetch(url);
+
+    const data = await res.json();
+    ALL_POSTS = data.result;
+
+    renderBlogs(ALL_POSTS);
+
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = `<p class="text-red-500">Failed to load blogs</p>`;
+  }
+}
+
+function renderBlogs(posts) {
+  const container = document.getElementById("blog-grid");
+
+  if (!posts.length) {
+    container.innerHTML = `<p class="text-gray-500">No blogs found.</p>`;
+    return;
+  }
+
+  container.innerHTML = posts.map(post => `
+    <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition">
+
+      ${post.image ? `
+        <img src="${urlFor(post.image)}" class="w-full h-48 object-cover"/>
+      ` : ""}
+
+      <div class="p-6 space-y-3">
+        <h3 class="text-xl font-semibold text-pink-700">
+          <a href="/blog?id=${post.slug.current}" class="hover:underline">
+            ${post.title}
+          </a>
+        </h3>
+
+        <p class="text-sm text-gray-500">
+          By ${post.author?.name || "Unknown"} • 
+          ${new Date(post.publishedAt).toLocaleDateString()}
+        </p>
+
+        <p class="text-gray-700 text-sm">
+          ${post.description || ""}
+        </p>
+
+        <a href="/blog?id=${post.slug.current}" 
+           class="inline-block text-pink-600 font-medium hover:underline">
+          Read more →
+        </a>
+      </div>
+
+    </div>
+  `).join("");
+}
+
+// search filter
+document.getElementById("searchInput").addEventListener("input", (e) => {
+  const term = e.target.value.toLowerCase();
+
+  const filtered = ALL_POSTS.filter(post =>
+    post.title.toLowerCase().includes(term) ||
+    (post.description || "").toLowerCase().includes(term)
+  );
+
+  renderBlogs(filtered);
+});
+
+loadBlogs();
+</script>
+
+</body>
+</html>

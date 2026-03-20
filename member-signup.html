@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Join • Amu4her</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body class="bg-white text-gray-800 font-sans">
+
+   <!-- Header -->
+    <header class="flex flex-col md:flex-row justify-between items-center p-6 bg-pink-100 shadow-sm">
+      <div class="flex items-center space-x-4">
+        <img src="./images/logo.png" alt="Amu4her Logo" class="h-16 w-16 rounded-full border-2 border-pink-300 shadow-md">
+        <div>
+  <h1 class="text-3xl font-bold text-pink-600 hover:text-pink-800 transition-colors duration-200">
+    <a href="/" class="hover:underline">Amu4her</a>
+  </h1>
+  <p class="text-sm text-pink-500 italic">
+    Create ~ Empower ~ Normalize
+  </p>
+</div>
+      </div>
+      <!-- Navigation -->
+      <nav class="mt-4 md:mt-0 flex items-center space-x-6 text-lg text-pink-700 font-medium relative">
+        <a href="/#hero" class="hover:underline">
+          Who Are We
+        </a>
+        <!-- ABOUT Dropdown -->
+        <div class="relative group">
+          <a href="/about" class="hover:underline flex items-center gap-1">
+            About
+            <svg class="w-4 h-4 transform transition-transform group-hover:rotate-180"
+            fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </a>
+          <div class="absolute left-0 mt-2 w-44 bg-white border border-pink-300 rounded-md shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform -translate-y-2 transition z-10">
+            <a href="/team-application" class="block px-4 py-2 hover:bg-pink-50">
+              Team Application
+            </a>
+            <a href="/member-signup" class="block px-4 py-2 hover:bg-pink-50">
+              Member Signup
+            </a>
+          </div>
+        </div>
+        <!-- VOLUNTEER Dropdown -->
+        <div class="relative group">
+          <a href="/volunteer" class="hover:underline flex items-center gap-1">
+            Volunteer
+            <svg class="w-4 h-4 transform transition-transform group-hover:rotate-180"
+            fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </a>
+          <div class="absolute left-0 mt-2 w-48 bg-white border border-pink-300 rounded-md shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform -translate-y-2 transition z-10">
+            <a href="/create-letters" class="block px-4 py-2 hover:bg-pink-50">
+              Make Letters
+            </a>
+            <a href="/chapter" class="block px-4 py-2 hover:bg-pink-50">
+              Start a Chapter
+            </a>
+    
+          </div>
+        </div>
+        <a href="/blogs" class="hover:underline">
+          Blog
+        </a>
+        <a href="/jewelry" class="hover:underline">
+          Jewelry
+        </a>
+      </nav>
+    </header>
+
+
+<!-- Hero -->
+<section class="px-6 py-16 bg-pink-50">
+  <div class="max-w-5xl mx-auto text-center space-y-6">
+
+    <h1 class="text-5xl font-bold text-pink-700">
+      Become a Member
+    </h1>
+
+    <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+      Sign up to start volunteering and be part of a community dedicated to 
+      empowering women and normalizing conversations around periods.
+    </p>
+
+  </div>
+</section>
+
+<!-- Main Card -->
+<section class="px-6 py-14">
+  <div class="max-w-4xl mx-auto">
+
+    <div class="bg-white rounded-2xl shadow-lg border border-pink-200 p-10 text-center space-y-6">
+
+      <div class="flex justify-center">
+        <div class="bg-pink-100 p-5 rounded-full">
+          <i class="fas fa-user-plus text-pink-600 text-3xl"></i>
+        </div>
+      </div>
+
+      <h2 class="text-3xl font-semibold text-pink-700">
+        Member Application
+      </h2>
+
+      <p class="text-gray-600 text-lg leading-relaxed">
+        Sign up to be a member and start volunteering with us!  
+        Whether you want to write blogs, help with outreach, or support our mission,
+        we’d love to have you on the team.
+      </p>
+
+      <!-- CTA Button -->
+      <div class="pt-4">
+        <a href="https://forms.gle/f3Y8MgmXRnPCkkxU9" target="_blank"
+           class="inline-block px-8 py-4 bg-pink-600 text-white text-lg font-semibold rounded-full shadow-md hover:bg-pink-700 transition duration-200">
+          Sign Up Here
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Extra Section -->
+<section class="px-6 py-14 bg-pink-50">
+  <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 text-center">
+
+    <div class="bg-white p-6 rounded-xl shadow-sm">
+      <i class="fas fa-pen text-pink-600 text-2xl mb-3"></i>
+      <h3 class="font-semibold text-lg text-pink-700">Write Blogs</h3>
+      <p class="text-gray-600 text-sm mt-2">Share your voice and spread awareness.</p>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow-sm">
+      <i class="fas fa-hands-helping text-pink-600 text-2xl mb-3"></i>
+      <h3 class="font-semibold text-lg text-pink-700">Community Work</h3>
+      <p class="text-gray-600 text-sm mt-2">Help support girls in need directly.</p>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow-sm">
+      <i class="fas fa-bullhorn text-pink-600 text-2xl mb-3"></i>
+      <h3 class="font-semibold text-lg text-pink-700">Spread Awareness</h3>
+      <p class="text-gray-600 text-sm mt-2">Be part of a meaningful movement.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-blue-100 text-center text-sm text-gray-600 p-4 mt-10 flex justify-center items-center gap-2">
+  <p>&copy; 2025 Amu4her. Built with</p>
+  <i class="fas fa-heart text-pink-600 text-sm"></i>
+</footer>
+
+</body>
+</html>
